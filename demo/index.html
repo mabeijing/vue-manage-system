@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Vue</title>
+    <script src='./vue.js'></script>
+    <style>
+        .activated {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id='app' @click='clickBtn' :class='{activated: isActivated}'>{{ fullName }}
+    <label>
+        <select v-model='values'>
+            <option disabled>--请选择--</option>
+            <option value='1'>A</option>
+            <option value='2'>B</option>
+            <option value='3'>C</option>
+        </select>
+    </label>
+    {{values}}
+    <input type='text' v-model.lazy='values'></input> //焦点移走才会出发
+    <input type='text' v-model.number='values'></input> //能将可以转化成数字的转化成数字
+    <input type='textarea' v-model.trim='values'></input>
+    {{values}}
+</div>
+
+<script>
+    // import Vue from './vue';
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            firstName: 'beijing',
+            lastName: 'ma',
+            age: 31,
+            isActivated: false,
+            values: ""
+        },
+        methods: {
+            clickBtn: function() {
+                // console.log('我日你仙人板板');
+                this.isActivated = !this.isActivated;
+            }
+        },
+        computed:{
+            // fullName: function(){
+            //     return this.firstName + ' ' + this.lastName
+            // }
+            fullName : {
+                get: function() {
+                    return this.firstName + ' ' + this.lastName
+                },
+                set: function(value) {
+                    const arr = value.split(" ");
+                    this.firstName = arr[0];
+                    this.lastName = arr[1];
+                }
+            }
+        },
+    });
+</script>
+</body>
+</html>

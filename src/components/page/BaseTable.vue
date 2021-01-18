@@ -132,6 +132,7 @@ export default {
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
+
                 this.tableData = res.list;
                 this.pageTotal = res.pageTotal || 50;
             });

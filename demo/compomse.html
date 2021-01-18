@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>组件使用的细节</title>
+    <script src='./vue.js'></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tbody>
+                <tr is='row'></tr>
+                <tr is='row'></tr>
+                <tr is='row'></tr>
+            </tbody>
+        </table>
+    </div>
+<script>
+    // 根组件定义data可以是对象，但是自组件定义data，必须是函数，且返回对象
+    Vue.component('row', {
+        data: function(){
+            return {
+                content: '我是表单'
+            }
+        },
+        template: '<tr><td>{{content}}</td></tr>'
+    })
+    const vm = new Vue({
+        el: '#app',
+    })
+</script>
+</body>
+</html>
