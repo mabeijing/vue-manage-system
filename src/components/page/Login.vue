@@ -50,9 +50,9 @@ export default {
                     fetchUser(this.param).then(res => {
                         console.log(res)
                         if (!res.success) {
-                            this.$message.error('用户名或者密码不正确，请检查！');
+                            this.$message.error(res.data);
                         } else {
-                            this.$message.success('success');
+                            this.$message.success(res.data);
                             localStorage.setItem('ms_username', this.param.username);
                             this.$router.push('/');
                         }
