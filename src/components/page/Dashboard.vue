@@ -21,15 +21,15 @@
                 </el-card>
                 <el-card shadow='hover' style='height:252px;'>
                     <div slot='header' class='clearfix'>
-                        <span>语言详情</span>
+                        <span>最近一次执行结果</span>
                     </div>
-                    Vue
+                    执行通过
                     <el-progress :percentage='71.3' color='#42b983'></el-progress>
-                    JavaScript
+                    执行失败
                     <el-progress :percentage='24.1' color='#f1e05a'></el-progress>
-                    CSS
+                    执行阻塞
                     <el-progress :percentage='13.7'></el-progress>
-                    HTML
+                    标记未执行
                     <el-progress :percentage='5.9' color='#f56c6c'></el-progress>
                 </el-card>
             </el-col>
@@ -40,8 +40,8 @@
                             <div class='grid-content grid-con-1'>
                                 <i class='el-icon-lx-people grid-con-icon'></i>
                                 <div class='grid-cont-right'>
-                                    <div class='grid-num'>1234</div>
-                                    <div>用户访问量</div>
+                                    <div class='grid-num'>400</div>
+                                    <div>总用例数</div>
                                 </div>
                             </div>
                         </el-card>
@@ -51,8 +51,8 @@
                             <div class='grid-content grid-con-2'>
                                 <i class='el-icon-lx-notice grid-con-icon'></i>
                                 <div class='grid-cont-right'>
-                                    <div class='grid-num'>321</div>
-                                    <div>系统消息</div>
+                                    <div class='grid-num'>300</div>
+                                    <div>通过用例</div>
                                 </div>
                             </div>
                         </el-card>
@@ -62,8 +62,8 @@
                             <div class='grid-content grid-con-3'>
                                 <i class='el-icon-lx-goods grid-con-icon'></i>
                                 <div class='grid-cont-right'>
-                                    <div class='grid-num'>5000</div>
-                                    <div>数量</div>
+                                    <div class='grid-num'>100</div>
+                                    <div>失败用例</div>
                                 </div>
                             </div>
                         </el-card>
@@ -182,21 +182,21 @@ export default {
             options: {
                 type: 'bar',
                 title: {
-                    text: '最近一周各品类销售图'
+                    text: '最近一周用例执行分布图'
                 },
                 xRorate: 25,
                 labels: ['周一', '周二', '周三', '周四', '周五'],
                 datasets: [
                     {
-                        label: '家电',
+                        label: '通过',
                         data: [234, 278, 270, 190, 230]
                     },
                     {
-                        label: '百货',
+                        label: '失败',
                         data: [164, 178, 190, 135, 160]
                     },
                     {
-                        label: '食品',
+                        label: '出错',
                         data: [144, 198, 150, 235, 120]
                     }
                 ]
@@ -204,20 +204,20 @@ export default {
             options2: {
                 type: 'line',
                 title: {
-                    text: '最近几个月各品类销售趋势图'
+                    text: '最近几个月用例执行趋势图'
                 },
                 labels: ['6月', '7月', '8月', '9月', '10月'],
                 datasets: [
                     {
-                        label: '家电',
+                        label: '通过',
                         data: [234, 278, 270, 190, 230]
                     },
                     {
-                        label: '百货',
+                        label: '失败',
                         data: [164, 178, 150, 135, 160]
                     },
                     {
-                        label: '食品',
+                        label: '出错',
                         data: [74, 118, 200, 235, 90]
                     }
                 ]
