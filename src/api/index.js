@@ -7,3 +7,14 @@ export const fetchData = query => {
         params: query
     });
 };
+
+export const fetchUser = query => {
+    return request({
+        url: '/api/v1/user',
+        method: 'post',
+        data: query,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+};

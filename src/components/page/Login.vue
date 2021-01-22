@@ -48,6 +48,7 @@ export default {
             this.$refs.login.validate(valid => {
                 if (valid) {
                     fetchUser(this.param).then(res => {
+                        console.log(res)
                         if (!res.success) {
                             this.$message.error('用户名或者密码不正确，请检查！');
                         } else {
