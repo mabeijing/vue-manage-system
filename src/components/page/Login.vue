@@ -37,10 +37,19 @@ export default {
                 username: '',
                 password: ''
             },
+            //  内置校验规则
+            //  vue-validator 内置一些常用的验证规则：
+            //  required — 输入值不能为空
+            //  pattern — 必须匹配pattern表示的正则表达式
+            //  minlength — 输入值长度不能小于minlength表示的值
+            //  maxlength — 输入的值不能大于maxlength表示的值
+            //  min — 输入值不能小于min表示的值
+            //  max — 输入值不能大于max表示的值
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
                 password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
             }
+
         };
     },
     methods: {
@@ -48,11 +57,11 @@ export default {
             this.$refs.login.validate(valid => {
                 if (valid) {
                     fetchUser(this.param).then(res => {
-                        console.log(res)
+                        console.log(res);
                         if (!res.success) {
-                            this.$message.error(res.data);
+                            this.$message.error(res.data.password[0]);
                         } else {
-                            this.$message.success(res.data);
+                            this.$message.success('欢迎 :' + res.data.username);
                             localStorage.setItem('ms_username', this.param.username);
                             this.$router.push('/');
                         }

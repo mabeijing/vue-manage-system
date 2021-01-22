@@ -1,20 +1,31 @@
 import request from '../utils/request';
-
+import qs from 'qs'
 export const fetchData = query => {
     return request({
-        url: '/table',
+        url: '/api/v1/case',
         method: 'get',
         params: query
     });
 };
 
+// export const fetchUser = query => {
+//     return request({
+//         url: '/api/v1/user',
+//         method: 'post',
+//         data: query,
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     });
+// };
+
 export const fetchUser = query => {
     return request({
-        url: '/api/v1/user',
+        url: '/user/info',
         method: 'post',
-        data: query,
+        data: qs.stringify(query),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
     });
 };
