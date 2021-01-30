@@ -27,7 +27,7 @@ export default new Router({
                 {
                     path: '/table',
                     component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
-                    meta: { title: '基础表格(添加用例)' }
+                    meta: { title: '添加用例' }
                 },
                 {
                     path: '/tabs',
@@ -101,6 +101,11 @@ export default new Router({
                     path: '/donate',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/Donate.vue'),
                     meta: { title: '支持作者' }
+                },
+                {
+                    path: '/case',
+                    component: () => import(/* webpackChunkName: "case" */ '../components/page/BaseCase.vue'),
+                    meta: { title: 'case编写' }
                 }
             ]
         },
