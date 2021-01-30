@@ -1,5 +1,6 @@
 import request from '../utils/request';
-import qs from 'qs'
+import qs from 'qs';
+
 export const fetchData = query => {
     return request({
         url: '/api/v1/demo',
@@ -29,3 +30,10 @@ export const fetchUser = query => {
 //         }
 //     });
 // };
+
+export const fetchAllCase = () => {
+    return request({
+        url: '/api/v1/case',
+        method: 'get'
+    });
+};

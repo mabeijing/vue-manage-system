@@ -23,10 +23,11 @@
                     @click='delAllSelection'
                 >批量删除
                 </el-button>
-                <el-select v-model='query.address' placeholder='地址' class='handle-select mr10'>
+                <el-select v-model='query.level' placeholder='分层' class='handle-select mr10'>
                     <el-option key='1' label='--请选择--' disabled></el-option>
-                    <el-option key='2' label='广东省' value='广东省'></el-option>
-                    <el-option key='3' label='湖南省' value='湖南省'></el-option>
+                    <el-option key='2' label='level0' value='0'></el-option>
+                    <el-option key='3' label='level1' value='1'></el-option>
+                    <el-option key='4' label='level2' value='2'></el-option>
                 </el-select>
                 <el-input v-model='query.name' placeholder='用户名' class='handle-input mr10'></el-input>
                 <el-button type='primary' icon='el-icon-search' @click='handleSearch'>搜索</el-button>
@@ -40,7 +41,7 @@
                 @selection-change='handleSelectionChange'
             >
                 <el-table-column type='selection' width='55' align='center'></el-table-column>
-                <el-table-column prop='id' label='用例编号' width='55' align='center'></el-table-column>
+                <el-table-column prop='id' label='用例ID' width='55' align='center'></el-table-column>
                 <el-table-column prop='name' label='用例名字'></el-table-column>
                 <el-table-column label='账户余额'>
                     <template slot-scope='scope'>￥{{ scope.row.money }}</template>
@@ -115,7 +116,7 @@
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
+import { fetchAllCase } from '../../api/index';
 
 export default {
     name: 'BaseCase',
@@ -143,7 +144,7 @@ export default {
     methods: {
         // 获取 easy-mock 的模拟数据
         getData() {
-            fetchData(this.query).then(res => {
+            fetchAllCase().then(res => {
                 console.log(res);
 
                 this.tableData = res.list;
