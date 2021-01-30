@@ -96,7 +96,7 @@
         </div>
 
         <!-- 编辑弹出框 -->
-        <el-dialog title='编辑' :visible.sync='editVisible' width='30%'>
+        <el-dialog title='编辑' :visible.sync='editVisible' width='50%'>
             <el-form ref='form' :model='form' label-width='70px'>
                 <el-form-item label='用户名'>
                     <el-input v-model='form.name'></el-input>
@@ -195,6 +195,7 @@ export default {
             this.editVisible = false;
             this.$message.success(`修改第 ${this.idx + 1} 行成功`);
             this.$set(this.tableData, this.idx, this.form);
+            this.getData()
         },
         // 分页导航
         handlePageChange(val) {

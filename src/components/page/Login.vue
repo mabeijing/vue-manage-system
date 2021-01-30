@@ -59,9 +59,9 @@ export default {
                     fetchUser(this.param).then(res => {
                         console.log(res);
                         if (!res.success) {
-                            this.$message.error(res.data.password[0]);
+                            this.$message.error(res.data);
                         } else {
-                            this.$message.success('欢迎 :' + res.data.username);
+                            this.$message.success('欢迎 :' + this.param.username);
                             localStorage.setItem('ms_username', this.param.username);
                             this.$router.push('/');
                         }
