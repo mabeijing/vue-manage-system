@@ -31,9 +31,17 @@ export const fetchUser = query => {
 //     });
 // };
 
-export const fetchAllCase = () => {
+// export const fetchAllCase = () => {
+//     return request({
+//         url: '/api/v1/case',
+//         method: 'get'
+//     });
+// };
+
+export const fetchAllCase = query => {
     return request({
         url: '/api/v1/case',
+        params: query,
         method: 'get'
     });
 };

@@ -23,13 +23,18 @@
                     @click='delAllSelection'
                 >批量删除
                 </el-button>
-                <el-select v-model='query.level' placeholder='分层' class='handle-select mr10'>
-                    <el-option key='1' label='--请选择--' disabled></el-option>
+                <el-select v-model='query.level' placeholder='用例级别' class='handle-select mr10'>
+                    <el-option key='1' label='--用例级别--' disabled></el-option>
                     <el-option key='2' label='level0' value='0'></el-option>
                     <el-option key='3' label='level1' value='1'></el-option>
                     <el-option key='4' label='level2' value='2'></el-option>
                 </el-select>
-                <el-input v-model='query.name' placeholder='用户名' class='handle-input mr10'></el-input>
+                <el-select v-model='query.state' placeholder='用例状态' class='handle-select mr10'>
+                    <el-option key='1' label='--用例状态--' disabled></el-option>
+                    <el-option key='2' label='正常' value='0'></el-option>
+                    <el-option key='3' label='删除' value='1'></el-option>
+                </el-select>
+                <el-input v-model='query.id' placeholder='用例编号' class='handle-input mr10'></el-input>
                 <el-button type='primary' icon='el-icon-search' @click='handleSearch'>搜索</el-button>
             </div>
             <el-table
@@ -41,31 +46,15 @@
                 @selection-change='handleSelectionChange'
             >
                 <el-table-column type='selection' width='55' align='center'></el-table-column>
-                <el-table-column prop='id' label='用例ID' width='55' align='center'></el-table-column>
-                <el-table-column prop='name' label='用例名字'></el-table-column>
-                <el-table-column label='账户余额'>
-                    <template slot-scope='scope'>￥{{ scope.row.money }}</template>
-                </el-table-column>
-                <el-table-column label='头像(查看大图)' align='center'>
-                    <template slot-scope='scope'>
-                        <el-image
-                            class='table-td-thumb'
-                            :src='scope.row.thumb'
-                            :preview-src-list='[scope.row.thumb]'
-                        ></el-image>
-                    </template>
-                </el-table-column>
-                <el-table-column prop='address' label='地址'></el-table-column>
-                <el-table-column label='状态' align='center'>
-                    <template slot-scope='scope'>
-                        <el-tag
-                            :type="scope.row.state==='成功'?'success':(scope.row.state==='失败'?'danger':'')"
-                        >{{ scope.row.state }}
-                        </el-tag>
-                    </template>
-                </el-table-column>
-
-                <el-table-column prop='date' label='注册时间'></el-table-column>
+                <el-table-column prop='ID' label='用例ID' width='55' align='center'></el-table-column>
+                <el-table-column prop='SERIAL_NO' label='用例名字'></el-table-column>
+                <el-table-column prop='LEVEL' label='用例级别'></el-table-column>
+                <el-table-column prop='DESCRIPTION' label='用例描述'></el-table-column>
+                <el-table-column prop='REQUEST_METHOD' label='请求方法'></el-table-column>
+                <el-table-column prop='REQUEST_HEADERS' label='请求头'></el-table-column>
+                <el-table-column prop='REQUEST_BODY' label='请求体'></el-table-column>
+                <el-table-column prop='CREATE_TIME' label='创建时间'></el-table-column>
+                <el-table-column prop='UPDATE_TIME' label='更新时间'></el-table-column>
                 <el-table-column label='操作' width='180' align='center'>
                     <template slot-scope='scope'>
                         <el-button
@@ -123,8 +112,9 @@ export default {
     data() {
         return {
             query: {
-                address: '',
-                name: '',
+                level: '',
+                state: '',
+                id: '',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -144,11 +134,11 @@ export default {
     methods: {
         // 获取 easy-mock 的模拟数据
         getData() {
-            fetchAllCase().then(res => {
+            fetchAllCase(this.query).then(res => {
                 console.log(res);
 
                 this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
+                this.pageTotal = res.pageTotal || 0;
             });
         },
         // 触发搜索按钮
